@@ -61,7 +61,7 @@ const showAddDialog = ref(false)
 </script>
 
 <template>
-    <v-container>
+    <v-container class="mt-6">
         <v-row>
             <v-col md="10">
                 <h1>patients</h1>
@@ -73,7 +73,7 @@ const showAddDialog = ref(false)
 
         <v-row>
             <v-col>
-                <v-table class="border">
+                <v-table class="border" stripped="even">
                     <thead>
                         <tr>
                         <th>Name</th>
@@ -87,14 +87,14 @@ const showAddDialog = ref(false)
                     </thead>
                     <tbody>
                         <tr v-for="item in patients">
-                            <td>{{ item.firstName+""+item.lastName }}</td>
+                            <td>{{ item.firstName+" "+item.lastName }}</td>
                             <td>{{ item.phone }}</td>
                             <td>{{ item.email }}</td>
                             <td>{{ item.residence }}</td>
                             <td>{{ item.nationalId }}</td>
                             <td>{{ item.dob }}</td>
                             <td>
-                                <v-btn color="primary" size="small">
+                                <v-btn color="primary" size="small" to="/viewpatient">
                                     <v-icon icon="mdi-eye"></v-icon>
                                     View
                                 </v-btn>
@@ -106,41 +106,56 @@ const showAddDialog = ref(false)
         </v-row>
     </v-container>
 <!-- Add Patient -->
-<v-dialog v-model="showAddDialog" max-width="600px">
+<v-dialog v-model="showAddDialog" max-width="50%">
     <v-form>
-        <v-card>
+        <v-card class="pa-4">
             <v-row>
                 <v-card-text>Add patient</v-card-text>
                 <v-spacer></v-spacer>
-                <v-btn class="ma-2" color="primary" icon="mdi-close" @click="showAddDialog = false"></v-btn>
+                <v-btn class="ma-2" color="secondary" icon="mdi-close" @click="showAddDialog = false"></v-btn>
             </v-row>
+            <v-divider class="mb-4" color="primary" opacity=".7" thickness="3" gradient></v-divider>
             <v-row>
                 <v-col md="6">
-                    <v-text-field label="First Name" outlined></v-text-field>
+                    <v-text-field label="First Name" variant="outlined"prepend-icon="mdi-account-outline"></v-text-field>
                 </v-col>
                 <v-col md="6">
-                    <v-text-field label="Last Name" outlined></v-text-field>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col md="6">
-                    <v-text-field label="Email" outlined></v-text-field>
-                </v-col>
-                <v-col md="6">
-                    <v-text-field label="Phone" outlined></v-text-field>
+                    <v-text-field label="Last Name" variant="outlined" prepend-icon="mdi-account-outline"></v-text-field>
                 </v-col>
             </v-row>
             <v-row>
                 <v-col md="6">
-                    <v-text-field label="Residence" outlined></v-text-field>
+                    <v-text-field label="Email"variant="outlined"prepend-icon="mdi-email-outline"></v-text-field>
                 </v-col>
                 <v-col md="6">
-                    <v-text-field label="National ID" outlined></v-text-field>
+                    <v-text-field label="Phone"variant= "outlined"prepend-icon="mdi-phone-outline"></v-text-field>
                 </v-col>
             </v-row>
             <v-row>
                 <v-col md="6">
-                    <v-text-field label="Date of Birth" outlined></v-text-field>
+                    <v-text-field label="Residence"variant= "outlined"prepend-icon="mdi-home-outline"></v-text-field>
+                </v-col>
+                <v-col md="6">
+                    <v-text-field label="National ID" variant="outlined"prepend-icon="mdi-account-outline"></v-text-field>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col md="6">
+                    <v-date-input label="Date of Birth" variant="outlined"prepend-icon="mdi-calendar-outline"></v-date-input>
+                </v-col>
+            </v-row>
+            <v-divider class="mb-4" color="primary" opacity=".7" thickness="3" gradient></v-divider>
+            <v-row>
+                <v-col>
+                    <v-card-actions>
+                        <v-btn color="primary"variant="outlined">
+                            <v-icon icon="mdi-close"></v-icon>
+                            Close</v-btn>
+                        <v-spacer/>
+                        <v-btn color="primary" variant="outlined">
+                        <v-icon icon="mdi-content-save-outline"></v-icon>
+                        Save </v-btn>
+                    </v-card-actions>
                 </v-col>
             </v-row>
         </v-card>
